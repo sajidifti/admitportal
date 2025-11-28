@@ -114,11 +114,10 @@
 
         .badges-wrapper {
             margin-top: 10px;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px;
-            position: relative;
         }
 
         .badges {
@@ -214,6 +213,9 @@
         }
 
         .qr-wrapper {
+            position: absolute;
+            right: 60px;
+            top: -60px;
             display: flex;
             flex-direction: column;
             align-items: center;
