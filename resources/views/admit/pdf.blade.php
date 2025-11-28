@@ -318,9 +318,16 @@
 
                 <div class="content">
                     <div class="info-section">
-                        <div class="info-row">
-                            <span class="label">পরীক্ষার্থীর নাম :</span>
-                            <span class="value">{{ $admit->name_bn }}</span>
+                        <div class="info-row-double">
+                            <div class="half">
+                                <span class="label">পরীক্ষার্থীর নাম :</span>
+                                <span class="value">{{ $admit->name_bn }}</span>
+                            </div>
+                            <div class="half">
+                                <span class="label"
+                                    style="min-width: 60px; text-align: right; padding-right: 10px;">রোল নং :</span>
+                                <span class="value">{{ $admit->roll }}</span>
+                            </div>
                         </div>
                         <div class="info-row-double">
                             <div class="half">
@@ -362,13 +369,10 @@
                         </div>
                         <div class="qr-text">স্ক্যান করে সত্যতা যাচাই করুন</div>
 
-                        <!-- Photo Placeholder - Assuming no dynamic photo for now as per previous code, but structure is here -->
-                        <!-- If there is a photo field, use it. Otherwise placeholder -->
+                        <!-- Photo Placeholder -->
                         <!-- <div class="photo-box">
                              <img src="" alt="Photo">
                         </div> -->
-
-                        <div class="roll-box">রোল নং : {{ $admit->roll }}</div>
                     </div>
                 </div>
 
