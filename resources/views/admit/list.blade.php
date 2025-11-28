@@ -26,9 +26,9 @@
                             <td class="px-4 py-2 border">{{ $card->roll }}</td>
                             <td class="px-4 py-2 border">{{ $card->exam_center_bn }}</td>
                             <td class="px-4 py-2 border">
-                                <a href="https://pdf.sajidifti.com/pdf?&url={{ urlencode(route('admit.pdf', $card->id)) }}"
+                                <a href="https://pdf.sajidifti.com/pdf?delay=1&filename={{ $card->roll }}&url={{ urlencode(route('admit.pdf', $card->id)) }}"
                                     class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-2 py-1 rounded text-sm mr-1">View</a>
-                                <a href="https://pdf.sajidifti.com/pdf/download?delay=1&url={{ urlencode(route('admit.pdf', $card->id)) }}"
+                                <a href="https://pdf.sajidifti.com/pdf/download?delay=1&filename={{ $card->roll }}&url={{ urlencode(route('admit.pdf', $card->id)) }}"
                                     class="bg-green-500 hover:bg-green-600 text-white font-semibold px-2 py-1 rounded text-sm">Download</a>
                             </td>
                         </tr>
