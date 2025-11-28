@@ -7,7 +7,8 @@
     <title>Admit Card - {{ $admit->roll }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla&display=swap"
         rel="stylesheet">
     <style>
         @media print {
@@ -157,6 +158,7 @@
 
         .info-section {
             width: 70%;
+            font-family: 'Tiro Bangla', serif;
         }
 
         .info-row {
@@ -248,6 +250,7 @@
             justify-content: space-between;
             align-items: flex-end;
             font-size: 14px;
+            font-family: 'Tiro Bangla', serif;
         }
 
         .instructions {
