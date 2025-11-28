@@ -182,6 +182,8 @@
         .info-row-double {
             display: flex;
             gap: 20px;
+            font-size: 20px;
+            font-weight: 500;
         }
 
         .info-row-double .half {
