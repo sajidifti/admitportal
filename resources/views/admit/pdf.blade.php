@@ -112,10 +112,17 @@
             color: #000;
         }
 
-        .badges {
+        .badges-wrapper {
             margin-top: 10px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+        }
+
+        .badges {
+            display: flex;
             align-items: center;
             gap: 0;
         }
@@ -152,12 +159,10 @@
             padding: 20px 60px;
             position: relative;
             z-index: 1;
-            display: flex;
-            justify-content: space-between;
         }
 
         .info-section {
-            width: 70%;
+            width: 100%;
             font-family: 'Tiro Bangla', serif;
         }
 
@@ -208,12 +213,10 @@
             align-items: baseline;
         }
 
-        .photo-section {
-            width: 25%;
+        .qr-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 20px;
         }
 
         .qr-code {
@@ -231,29 +234,6 @@
             font-size: 10px;
             text-align: center;
             color: #0d47a1;
-            margin-bottom: 20px;
-        }
-
-        .photo-box {
-            width: 150px;
-            height: 150px;
-            border: 1px solid #000;
-            margin-bottom: 10px;
-            background: #f0f0f0;
-        }
-
-        .photo-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .roll-box {
-            border: 2px solid #0d47a1;
-            padding: 5px 15px;
-            font-weight: 700;
-            font-size: 18px;
-            background: #fff;
         }
 
         .footer {
@@ -320,13 +300,24 @@
 
                 <div class="header">
                     <div class="bismillah">বিসমিল্লাহির রাহমানির রাহিম</div>
-                    <div class="organization">মাস্টার মোকাছেদুর রহমান ফাউন্ডেশন এর পৃষ্ঠপোষকতায়</div>
+                    <div class="organization">মাস্টার মোকাছেদুর রহমান ফাউন্ডেশন এর পৃষ্ঠপোষকতায়</div>
                     <div class="exam-title">স্কাইরক্স বৃত্তি পরীক্ষা - ২০২৫</div>
-                    <div class="location">মাইজদীপুর, সেনবাগ, নোয়াখালী</div>
+                    <div class="location">মাইজদীপুর, সেনবাগ, নোয়াখালী</div>
 
-                    <div class="badges">
-                        <div class="badge-green">প্রবেশপত্র</div>
-                        <div class="badge-red">শ্রেণি: পঞ্চম</div>
+                    <div class="badges-wrapper">
+                        <!-- QR Code -->
+                        <div class="qr-wrapper">
+                            <div class="qr-code">
+                                {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->generate($admit->roll) !!}
+                            </div>
+                            <div class="qr-text">স্ক্যান করে সত্যতা যাচাই করুন</div>
+                        </div>
+
+                        <!-- Badges -->
+                        <div class="badges">
+                            <div class="badge-green">প্রবেশপত্র</div>
+                            <div class="badge-red">শ্রেণি: পঞ্চম</div>
+                        </div>
                     </div>
                 </div>
 
@@ -353,7 +344,7 @@
                             </div>
                         </div>
                         <div class="info-row">
-                            <span class="label label-main">বিদ্যালয় :</span>
+                            <span class="label label-main">বিদ্যালয় :</span>
                             <span class="value">{{ $admit->school }}</span>
                         </div>
                         <div class="info-row">
@@ -367,23 +358,10 @@
                                     class="value">{{ \Carbon\Carbon::parse($admit->exam_date)->locale('bn')->isoFormat('LL') }}</span>
                             </div>
                             <div class="half">
-                                <span class="label label-sub">সময় :</span>
+                                <span class="label label-sub">সময় :</span>
                                 <span class="value">{{ $admit->exam_time }}</span>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="photo-section">
-                        <!-- QR Code Placeholder -->
-                        <div class="qr-code">
-                            {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->generate($admit->roll) !!}
-                        </div>
-                        <div class="qr-text">স্ক্যান করে সত্যতা যাচাই করুন</div>
-
-                        <!-- Photo Placeholder -->
-                        <!-- <div class="photo-box">
-                             <img src="" alt="Photo">
-                        </div> -->
                     </div>
                 </div>
 
@@ -392,13 +370,13 @@
                         <h4>বি: দ্র:</h4>
                         <ol>
                             <li>পরীক্ষা শুরুর ৩০ মিনিট পূর্বে পরীক্ষার্থীকে কেন্দ্রে উপস্থিত হতে হবে।</li>
-                            <li>ঘড়ি, ক্যালকুলেটরসহ কোনো ধরনের ইলেকট্রনিক ডিভাইস নিয়ে কেন্দ্রে প্রবেশ করা যাবে না।</li>
-                            <li>কোনো পরীক্ষার্থীর পক্ষে বহিরাগত কোনো শিক্ষার্থী পরীক্ষায় অংশগ্রহণ করলে পরীক্ষার্থীর
+                            <li>ঘড়ি, ক্যালকুলেটরসহ কোনো ধরনের ইলেকট্রনিক ডিভাইস নিয়ে কেন্দ্রে প্রবেশ করা যাবে না।</li>
+                            <li>কোনো পরীক্ষার্থীর পক্ষে বহিরাগত কোনো শিক্ষার্থী পরীক্ষায় অংশগ্রহণ করলে পরীক্ষার্থীর
                                 পরীক্ষা বাতিলসহ তার বিরুদ্ধে আইনানুগ ব্যবস্থা গ্রহণ করা হবে।</li>
                         </ol>
                     </div>
                     <div class="signature">
-                        <div class="signature-line">পরীক্ষা নিয়ন্ত্রক</div>
+                        <div class="signature-line">পরীক্ষা নিয়ন্ত্রক</div>
                     </div>
                 </div>
             </div>
