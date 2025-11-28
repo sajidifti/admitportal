@@ -141,7 +141,7 @@
 
 <body>
     <div class="card" style="font-family: SolaimanLipi">
-        <img src="{{ public_path('images/logo.png') }}" alt="logo" class="logo">
+        <img src="{{ asset('images/logo.png') }}" alt="logo" class="logo">
 
         <div class="header">
             <div class="small-line">বিসমিল্লাহির রাহমানির রাহিম</div>

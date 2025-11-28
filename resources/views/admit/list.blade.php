@@ -1,56 +1,37 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Admit Cards List</title>
-    <style>
-        body {
-            font-family: "SolaimanLipi.ttf", sans-serif;
-        }
+@extends('layouts.app')
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th,
-        td {
-            border: 1px solid #ccc;
-            padding: 8px;
-        }
-    </style>
-</head>
-
-<body>
-    <h2>Admit Cards</h2>
-
-    <a href="{{ route('admit.create') }}">Create new</a>
-
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>নাম</th>
-                <th>রোল</th>
-                <th>কেন্দ্র</th>
-                <th>অ্যাকশন</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($admitCards as $card)
+@section('content')
+<div class="max-w-4xl mx-auto bg-white p-8 rounded shadow">
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold">Admit Cards</h2>
+        <a href="{{ route('admit.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded">Create new</a>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="min-w-full border border-gray-200">
+            <thead class="bg-gray-100">
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $card->name_bn }}</td>
-                    <td>{{ $card->roll }}</td>
-                    <td>{{ $card->exam_center_bn }}</td>
-                    <td>
-                        <a href="{{ route('admit.pdf', $card->id) }}">Download PDF</a>
-                    </td>
+                    <th class="px-4 py-2 border">#</th>
+                    <th class="px-4 py-2 border">নাম</th>
+                    <th class="px-4 py-2 border">রোল</th>
+                    <th class="px-4 py-2 border">কেন্দ্র</th>
+                    <th class="px-4 py-2 border">অ্যাকশন</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-</body>
-
-</html>
+            </thead>
+            <tbody>
+                @foreach ($admitCards as $card)
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-2 border">{{ $loop->iteration }}</td>
+                        <td class="px-4 py-2 border">{{ $card->name_bn }}</td>
+                        <td class="px-4 py-2 border">{{ $card->roll }}</td>
+                        <td class="px-4 py-2 border">{{ $card->exam_center_bn }}</td>
+                        <td class="px-4 py-2 border">
+                            <a href="{{ route('admit.pdf', $card->id) }}" class="text-blue-700 hover:underline">Download PDF</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+@endsection
