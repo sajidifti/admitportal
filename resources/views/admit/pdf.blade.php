@@ -170,8 +170,22 @@
         }
 
         .label {
-            min-width: 120px;
+            display: inline-block;
             font-weight: 600;
+        }
+
+        .label-main {
+            width: 170px;
+            text-align: justify;
+            text-align-last: justify;
+            margin-right: 10px;
+        }
+
+        .label-sub {
+            width: 80px;
+            text-align: justify;
+            text-align-last: justify;
+            margin-right: 10px;
         }
 
         .value {
@@ -320,43 +334,40 @@
                     <div class="info-section">
                         <div class="info-row-double">
                             <div class="half">
-                                <span class="label">পরীক্ষার্থীর নাম :</span>
+                                <span class="label label-main">পরীক্ষার্থীর নাম :</span>
                                 <span class="value">{{ $admit->name_bn }}</span>
                             </div>
                             <div class="half">
-                                <span class="label"
-                                    style="min-width: 60px; text-align: right; padding-right: 10px;">রোল নং :</span>
+                                <span class="label label-sub">রোল নং :</span>
                                 <span class="value">{{ $admit->roll }}</span>
                             </div>
                         </div>
                         <div class="info-row-double">
                             <div class="half">
-                                <span class="label">পিতা :</span>
+                                <span class="label label-main">পিতা :</span>
                                 <span class="value">{{ $admit->father_name_bn }}</span>
                             </div>
                             <div class="half">
-                                <span class="label"
-                                    style="min-width: 60px; text-align: right; padding-right: 10px;">মাতা :</span>
+                                <span class="label label-sub">মাতা :</span>
                                 <span class="value">{{ $admit->mother_name_bn ?? '-' }}</span>
                             </div>
                         </div>
                         <div class="info-row">
-                            <span class="label">বিদ্যালয় :</span>
+                            <span class="label label-main">বিদ্যালয় :</span>
                             <span class="value">{{ $admit->school }}</span>
                         </div>
                         <div class="info-row">
-                            <span class="label">কেন্দ্র :</span>
+                            <span class="label label-main">কেন্দ্র :</span>
                             <span class="value">{{ $admit->exam_center_bn }}</span>
                         </div>
                         <div class="info-row-double" style="margin-top: 20px;">
                             <div class="half">
-                                <span class="label">পরীক্ষার তারিখ :</span>
+                                <span class="label label-main">পরীক্ষার তারিখ :</span>
                                 <span
                                     class="value">{{ \Carbon\Carbon::parse($admit->exam_date)->locale('bn')->isoFormat('LL') }}</span>
                             </div>
                             <div class="half">
-                                <span class="label"
-                                    style="min-width: 60px; text-align: right; padding-right: 10px;">সময় :</span>
+                                <span class="label label-sub">সময় :</span>
                                 <span class="value">{{ $admit->exam_time }}</span>
                             </div>
                         </div>
