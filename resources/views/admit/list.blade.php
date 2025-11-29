@@ -25,7 +25,7 @@
                 </select>
                 <span class="text-gray-700 font-medium">entries</span>
             </div>
-            <div class="w-full md:w-auto flex-grow md:flex-grow-0 flex gap-2">
+            <div class="w-full md:w-auto grow md:grow-0 flex gap-2">
                 <input type="text" id="search" placeholder="Search by Name, Roll, Center..."
                     class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <button id="reset_filters"
