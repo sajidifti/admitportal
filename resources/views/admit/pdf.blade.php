@@ -310,7 +310,7 @@
                         <!-- QR Code -->
                         <div class="qr-wrapper">
                             <div class="qr-code">
-                                {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->generate($admit->roll) !!}
+                                {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->encoding('UTF-8')->errorCorrection('H')->generate($admit->roll) !!}
                             </div>
                             <div class="qr-text">স্ক্যান করে সত্যতা যাচাই করুন</div>
                         </div>
