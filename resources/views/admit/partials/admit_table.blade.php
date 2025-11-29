@@ -53,9 +53,9 @@
                     <td class="px-4 py-2 border">
                         <div class="flex flex-wrap gap-1">
                             <a href="https://pdf.sajidifti.com/pdf?delay=1&filename={{ $card->roll }}&url={{ urlencode(route('admit.pdf', $card->id)) }}"
-                                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-2 py-1 rounded text-sm">View</a>
+                                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-2 py-1 rounded text-sm" target="_blank">View</a>
                             <a href="https://pdf.sajidifti.com/pdf/download?delay=1&filename={{ $card->roll }}&url={{ urlencode(route('admit.pdf', $card->id)) }}"
-                                class="bg-green-500 hover:bg-green-600 text-white font-semibold px-2 py-1 rounded text-sm">Download</a>
+                                class="bg-green-500 hover:bg-green-600 text-white font-semibold px-2 py-1 rounded text-sm" target="_blank">Download</a>
                             <a href="{{ route('admit.edit', $card->id) }}"
                                 class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-2 py-1 rounded text-sm">Edit</a>
                             <form action="{{ route('admit.destroy', $card->id) }}" method="POST"

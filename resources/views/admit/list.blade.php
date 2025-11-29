@@ -29,8 +29,7 @@
                 <input type="text" id="search" placeholder="Search by Name, Roll, Center..."
                     class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <button id="reset_filters"
-                    class="bg-gray-500 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded whitespace-nowrap">Reset
-                    Filters</button>
+                    class="bg-gray-500 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded whitespace-nowrap cursor-pointer">↻</button>
             </div>
         </div>
 
