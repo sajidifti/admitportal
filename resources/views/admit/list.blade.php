@@ -14,9 +14,21 @@
             </div>
         @endif
 
-        <div class="mb-4">
-            <input type="text" id="search" placeholder="Search by Name, Roll, Center..."
-                class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
+            <div class="flex items-center gap-2">
+                <label for="per_page" class="text-gray-700 font-medium">Show</label>
+                <select id="per_page" class="border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <span class="text-gray-700 font-medium">entries</span>
+            </div>
+            <div class="w-full md:w-auto flex-grow md:flex-grow-0">
+                <input type="text" id="search" placeholder="Search by Name, Roll, Center..."
+                    class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
         </div>
 
         <div id="admit-table-container">
@@ -32,10 +44,10 @@
         $(document).ready(function() {
             var timeout = null;
 
-            function fetch_data(page, sort_type, sort_by, search_query) {
+            function fetch_data(page, sort_type, sort_by, search_query, per_page) {
                 $.ajax({
                     url: "{{ route('admit.list') }}?page=" + page + "&sort=" + sort_by + "&direction=" +
-                        sort_type + "&search=" + search_query,
+                        sort_type + "&search=" + search_query + "&per_page=" + per_page,
                     success: function(data) {
                         $('#admit-table-container').html(data);
                     }
@@ -50,7 +62,8 @@
                 var sort_by = $('#hidden_sort_by').val();
                 var sort_type = $('#hidden_sort_type').val();
                 var search_query = $('#search').val();
-                fetch_data(page, sort_type, sort_by, search_query);
+                var per_page = $('#per_page').val();
+                fetch_data(page, sort_type, sort_by, search_query, per_page);
             });
 
             $(document).on('keyup', '#search', function() {
@@ -60,8 +73,18 @@
                     var page = 1;
                     var sort_by = $('#hidden_sort_by').val();
                     var sort_type = $('#hidden_sort_type').val();
-                    fetch_data(page, sort_type, sort_by, search_query);
+                    var per_page = $('#per_page').val();
+                    fetch_data(page, sort_type, sort_by, search_query, per_page);
                 }, 500);
+            });
+
+            $(document).on('change', '#per_page', function() {
+                var search_query = $('#search').val();
+                var page = 1;
+                var sort_by = $('#hidden_sort_by').val();
+                var sort_type = $('#hidden_sort_type').val();
+                var per_page = $('#per_page').val();
+                fetch_data(page, sort_type, sort_by, search_query, per_page);
             });
 
             $(document).on('click', '.sortable', function() {
@@ -85,8 +108,9 @@
 
                 var page = 1;
                 var search_query = $('#search').val();
+                var per_page = $('#per_page').val();
 
-                fetch_data(page, reverse_order, column_name, search_query);
+                fetch_data(page, reverse_order, column_name, search_query, per_page);
             });
         });
     </script>

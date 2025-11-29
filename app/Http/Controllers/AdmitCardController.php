@@ -51,7 +51,8 @@ class AdmitCardController extends Controller
             $query->latest();
         }
 
-        $admitCards = $query->paginate(10);
+        $perPage = $request->get('per_page', 10);
+        $admitCards = $query->paginate($perPage);
 
         if ($request->ajax()) {
             return view('admit.partials.admit_table', compact('admitCards'))->render();

@@ -3,28 +3,40 @@
         <thead class="bg-gray-100">
             <tr>
                 <th class="px-4 py-2 border">#</th>
-                <th class="px-4 py-2 border cursor-pointer sortable" data-sort="name_bn">
+                <th class="px-4 py-2 border cursor-pointer sortable group" data-sort="name_bn">
                     <div class="flex items-center justify-between">
                         <span>নাম</span>
-                        @if (request('sort') == 'name_bn')
-                            <span>{!! request('direction') == 'asc' ? '&uarr;' : '&darr;' !!}</span>
-                        @endif
+                        <span class="text-gray-400 group-hover:text-gray-600">
+                            @if (request('sort') == 'name_bn')
+                                {!! request('direction') == 'asc' ? '&uarr;' : '&darr;' !!}
+                            @else
+                                &updownarrow;
+                            @endif
+                        </span>
                     </div>
                 </th>
-                <th class="px-4 py-2 border cursor-pointer sortable" data-sort="roll">
+                <th class="px-4 py-2 border cursor-pointer sortable group" data-sort="roll">
                     <div class="flex items-center justify-between">
                         <span>রোল</span>
-                        @if (request('sort') == 'roll')
-                            <span>{!! request('direction') == 'asc' ? '&uarr;' : '&darr;' !!}</span>
-                        @endif
+                        <span class="text-gray-400 group-hover:text-gray-600">
+                            @if (request('sort') == 'roll')
+                                {!! request('direction') == 'asc' ? '&uarr;' : '&darr;' !!}
+                            @else
+                                &updownarrow;
+                            @endif
+                        </span>
                     </div>
                 </th>
-                <th class="px-4 py-2 border cursor-pointer sortable" data-sort="exam_center_bn">
+                <th class="px-4 py-2 border cursor-pointer sortable group" data-sort="exam_center_bn">
                     <div class="flex items-center justify-between">
                         <span>কেন্দ্র</span>
-                        @if (request('sort') == 'exam_center_bn')
-                            <span>{!! request('direction') == 'asc' ? '&uarr;' : '&darr;' !!}</span>
-                        @endif
+                        <span class="text-gray-400 group-hover:text-gray-600">
+                            @if (request('sort') == 'exam_center_bn')
+                                {!! request('direction') == 'asc' ? '&uarr;' : '&darr;' !!}
+                            @else
+                                &updownarrow;
+                            @endif
+                        </span>
                     </div>
                 </th>
                 <th class="px-4 py-2 border">অ্যাকশন</th>
