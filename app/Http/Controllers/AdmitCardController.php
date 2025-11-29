@@ -43,4 +43,38 @@ class AdmitCardController extends Controller
 
         return view('admit.pdf', compact('admit'));
     }
+
+    public function edit($id)
+    {
+        $admit = AdmitCard::findOrFail($id);
+        return view('admit.edit', compact('admit'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $admit = AdmitCard::findOrFail($id);
+
+        $data = $request->validate([
+            'name_bn' => 'required|string|max:255',
+            'father_name_bn' => 'required|string|max:255',
+            'mother_name_bn' => 'nullable|string|max:255',
+            'school' => 'required|string|max:255',
+            'exam_time' => 'required|string|max:15',
+            'roll' => 'required|string|max:100|unique:admit_cards,roll,' . $id,
+            'exam_center_bn' => 'required|string|max:255',
+            'exam_date' => 'required|date'
+        ]);
+
+        $admit->update($data);
+
+        return redirect()->route('admit.list')->with('success', 'Admit card updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $admit = AdmitCard::findOrFail($id);
+        $admit->delete();
+
+        return redirect()->route('admit.list')->with('success', 'Admit card deleted successfully.');
+    }
 }

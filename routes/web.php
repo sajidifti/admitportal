@@ -12,3 +12,8 @@ Route::post('/admit/store', [AdmitCardController::class, 'store'])->name('admit.
 
 Route::get('/admit/list', [AdmitCardController::class, 'index'])->name('admit.list');
 Route::get('/admit/pdf/{id}', [AdmitCardController::class, 'downloadPDF'])->name('admit.pdf');
+
+Route::get('/admit/edit/{id}', [AdmitCardController::class, 'edit'])->name('admit.edit');
+Route::put('/admit/update/{id}', [AdmitCardController::class, 'update'])->name('admit.update');
+Route::delete('/admit/delete/{id}', [AdmitCardController::class, 'destroy'])->name('admit.destroy');
+
