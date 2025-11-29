@@ -49,6 +49,15 @@
             </div>
 
             <div>
+                <label class="block font-semibold mb-1">শ্রেণি:</label>
+                <input type="text" name="class" value="{{ old('class', $admit->class) }}"
+                    class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400">
+                @error('class')
+                    <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div>
                 <label class="block font-semibold mb-1">পরীক্ষার তারিখ:</label>
                 <input type="date" name="exam_date" value="{{ old('exam_date', $admit->exam_date) }}"
                     class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400">

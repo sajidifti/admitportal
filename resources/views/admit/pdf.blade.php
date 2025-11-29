@@ -215,15 +215,15 @@
         .qr-wrapper {
             position: absolute;
             right: 60px;
-            top: -60px;
+            top: -100px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .qr-code {
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             border: 2px solid #0d47a1;
             margin-bottom: 5px;
             display: flex;
@@ -302,23 +302,29 @@
 
                 <div class="header">
                     <div class="bismillah">বিসমিল্লাহির রাহমানির রাহিম</div>
-                    <div class="organization">মাস্টার মোকাছেদুর রহমান ফাউন্ডেশন এর পৃষ্ঠপোষকতায়</div>
-                    <div class="exam-title">স্কাইরক্স বৃত্তি পরীক্ষা - ২০২৫</div>
-                    <div class="location">মাইজদীপুর, সেনবাগ, নোয়াখালী</div>
+                    <div class="organization">মাস্টার মোকছেদুর রহমান ফাউন্ডেশন এর পৃষ্ঠপোষকতায়<br>ও<br>
+                        সেনবাগ উপজেলা ওয়েলফেয়ার সোসাইটি ইউএসএ ইনক এর সহযোগিতায়
+                    </div>
+                    <div class="exam-title">
+                        স্কাইরক্স বৃত্তি পরীক্ষা ২০২৫
+                    </div>
+                    <div class="location">
+                        মইজদীপুর, সেনবাগ, নোয়াখালী
+                    </div>
 
                     <div class="badges-wrapper">
                         <!-- QR Code -->
                         <div class="qr-wrapper">
                             <div class="qr-code">
-                                {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->encoding('UTF-8')->errorCorrection('H')->generate($admit->roll) !!}
+                                {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(130)->encoding('UTF-8')->errorCorrection('H')->generate('https://tinyurl.com/skyrox') !!}
                             </div>
-                            <div class="qr-text">স্ক্যান করে সত্যতা যাচাই করুন</div>
+                            <div class="qr-text">আসন বিন্যাস দেখার<br>জন্য স্ক্যান করুন</div>
                         </div>
 
                         <!-- Badges -->
                         <div class="badges">
                             <div class="badge-green">প্রবেশপত্র</div>
-                            <div class="badge-red">শ্রেণি: পঞ্চম</div>
+                            <div class="badge-red">শ্রেণি: {{ $admit->class }}</div>
                         </div>
                     </div>
                 </div>

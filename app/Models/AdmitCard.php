@@ -14,6 +14,7 @@ class AdmitCard extends Model
         'school',
         'exam_center_bn',
         'exam_time',
-        'exam_date'
+        'exam_date',
+        'class',
     ];
 }
