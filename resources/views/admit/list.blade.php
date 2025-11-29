@@ -64,7 +64,7 @@
                 fetch_data(1, 'asc', '', '', 10);
             });
 
-            $(document).on('click', '.pagination a', function(event) {
+            $(document).on('click', '.pagination-link', function(event) {
                 event.preventDefault();
                 var href = $(this).attr('href');
                 var url = new URL(href, window.location.origin);
