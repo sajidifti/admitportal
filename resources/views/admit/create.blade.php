@@ -92,68 +92,14 @@
                 @enderror
             </div>
 
-            <!--
-            <div>
-                <label class="block font-semibold mb-1">ছবি (jpg/png):</label>
-                <input type="file" name="photo" class="w-full border rounded px-3 py-2">
-                @error('photo')
-                    <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                @enderror
-            </div>
-            -->
-
             <div class="flex items-center justify-between pt-4">
                 <button type="submit"
                     class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded">Save</button>
+                <button type="submit" name="save_and_create_another" value="1"
+                    class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded ml-4">Save & Create
+                    Another</button>
                 <a href="{{ route('admit.list') }}" class="ml-4 text-blue-700 hover:underline">View List</a>
             </div>
         </form>
     </div>
 @endsection
-
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Create Admit Card</title>
-</head>
-<body>
-
-<h2>Admit Card Form</h2>
-
-<form action="{{ route('admit.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-
-    <label>নাম:</label><br>
-    <input type="text" name="name_bn"><br><br>
-
-    <label>পিতার নাম:</label><br>
-    <input type="text" name="father_name_bn"><br><br>
-
-    <label>মাতার নাম:</label><br>
-    <input type="text" name="mother_name_bn"><br><br>
-
-    <label>স্কুল:</label><br>
-    <input type="date" name="dob"><br><br>
-
-    <label>পরীক্ষার রোল:</label><br>
-    <input type="text" name="roll"><br><br>
-
-    <label>পরীক্ষার কেন্দ্র:</label><br>
-    <input type="text" name="exam_center_bn"><br><br>
-
-
-    <label>পরীক্ষার সময়:</label><br>
-    <input type="text" name="exam_center_bn"><br><br>
-
-
-    <label>পরীক্ষার তারিখ:</label><br>
-    <input type="text" name="exam_center_bn"><br><br>
-
-    <button type="submit">Save</button>
-</form>
-
-</body>
-</html>
--->

@@ -28,6 +28,10 @@ class AdmitCardController extends Controller
 
         $admit = AdmitCard::create($data);
 
+        if ($request->has('save_and_create_another')) {
+            return redirect()->route('admit.create')->with('success', 'Admit card saved. You can create another one now.');
+        }
+
         return redirect()->route('admit.list')->with('success', 'Admit card saved.');
     }
 
