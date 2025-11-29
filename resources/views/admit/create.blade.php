@@ -92,13 +92,26 @@
                 @enderror
             </div>
 
-            <div class="flex items-center justify-between pt-4">
-                <button type="submit"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded">Save</button>
-                <button type="submit" name="save_and_create_another" value="1"
-                    class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded ml-4">Save & Create
-                    Another</button>
-                <a href="{{ route('admit.list') }}" class="ml-4 text-blue-700 hover:underline">View List</a>
+            <div class="flex items-center justify-between pt-6 mt-6 border-t border-gray-100">
+                <a href="{{ route('admit.list') }}"
+                    class="text-gray-500 hover:text-gray-700 font-medium transition-colors duration-200 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Back to List
+                </a>
+                <div class="flex items-center gap-3">
+                    <button type="submit" name="save_and_create_another" value="1"
+                        class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium px-5 py-2.5 rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Save & Create Another
+                    </button>
+                    <button type="submit"
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+                        Save Admit Card
+                    </button>
+                </div>
             </div>
         </form>
     </div>
