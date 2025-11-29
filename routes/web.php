@@ -4,7 +4,7 @@ use App\Http\Controllers\AdmitCardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('admit.create');
+    return redirect()->route('admit.list');
 });
 
 Route::get('/admit/create', [AdmitCardController::class, 'create'])->name('admit.create');
