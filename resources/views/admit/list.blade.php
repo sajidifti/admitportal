@@ -25,9 +25,12 @@
                 </select>
                 <span class="text-gray-700 font-medium">entries</span>
             </div>
-            <div class="w-full md:w-auto flex-grow md:flex-grow-0">
+            <div class="w-full md:w-auto flex-grow md:flex-grow-0 flex gap-2">
                 <input type="text" id="search" placeholder="Search by Name, Roll, Center..."
                     class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button id="reset_filters"
+                    class="bg-gray-500 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded whitespace-nowrap">Reset
+                    Filters</button>
             </div>
         </div>
 
@@ -53,6 +56,14 @@
                     }
                 });
             }
+
+            $(document).on('click', '#reset_filters', function() {
+                $('#search').val('');
+                $('#per_page').val('10');
+                $('#hidden_sort_by').val('');
+                $('#hidden_sort_type').val('asc');
+                fetch_data(1, 'asc', '', '', 10);
+            });
 
             $(document).on('click', '.pagination a', function(event) {
                 event.preventDefault();
