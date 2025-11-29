@@ -59,13 +59,13 @@
                     <td class="px-4 py-2 border">
                         @php
                             $isIdSort = request('sort') == 'id';
-                            $isDescending = request('direction') == 'desc';
+                            $isAscending = request('direction') == 'asc';
 
-                            if ($isIdSort && $isDescending) {
-                                // When sorting by ID descending, count up normally
+                            if ($isIdSort && $isAscending) {
+                                // When sorting by ID ascending, count up normally (1, 2, 3...)
                                 $serial = $loop->iteration + ($admitCards->currentPage() - 1) * $admitCards->perPage();
                             } else {
-                                // Default or ID ascending: count down from total
+                                // Default or ID descending: count down from total (10, 9, 8...)
                                 $serial =
                                     $admitCards->total() -
                                     (($admitCards->currentPage() - 1) * $admitCards->perPage() + $loop->iteration - 1);
