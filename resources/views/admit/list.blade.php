@@ -14,45 +14,80 @@
             </div>
         @endif
 
-        <div class="overflow-x-auto">
-            <table class="min-w-full border border-gray-200">
-                <thead class="bg-gray-100">
-                    <tr>
-                        <th class="px-4 py-2 border">#</th>
-                        <th class="px-4 py-2 border">নাম</th>
-                        <th class="px-4 py-2 border">রোল</th>
-                        <th class="px-4 py-2 border">কেন্দ্র</th>
-                        <th class="px-4 py-2 border">অ্যাকশন</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($admitCards as $card)
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 border">{{ $loop->iteration }}</td>
-                            <td class="px-4 py-2 border">{{ $card->name_bn }}</td>
-                            <td class="px-4 py-2 border">{{ $card->roll }}</td>
-                            <td class="px-4 py-2 border">{{ $card->exam_center_bn }}</td>
-                            <td class="px-4 py-2 border">
-                                <div class="flex flex-wrap gap-1">
-                                    <a href="https://pdf.sajidifti.com/pdf?delay=1&filename={{ $card->roll }}&url={{ urlencode(route('admit.pdf', $card->id)) }}"
-                                        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-2 py-1 rounded text-sm">View</a>
-                                    <a href="https://pdf.sajidifti.com/pdf/download?delay=1&filename={{ $card->roll }}&url={{ urlencode(route('admit.pdf', $card->id)) }}"
-                                        class="bg-green-500 hover:bg-green-600 text-white font-semibold px-2 py-1 rounded text-sm">Download</a>
-                                    <a href="{{ route('admit.edit', $card->id) }}"
-                                        class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-2 py-1 rounded text-sm">Edit</a>
-                                    <form action="{{ route('admit.destroy', $card->id) }}" method="POST" class="inline"
-                                        onsubmit="return confirm('Are you sure you want to delete this admit card?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-500 hover:bg-red-600 text-white font-semibold px-2 py-1 rounded text-sm">Delete</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="mb-4">
+            <input type="text" id="search" placeholder="Search by Name, Roll, Center..."
+                class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div id="admit-table-container">
+            @include('admit.partials.admit_table')
         </div>
     </div>
+
+    <input type="hidden" id="hidden_sort_by" value="" />
+    <input type="hidden" id="hidden_sort_type" value="asc" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var timeout = null;
+
+            function fetch_data(page, sort_type, sort_by, search_query) {
+                $.ajax({
+                    url: "{{ route('admit.list') }}?page=" + page + "&sort=" + sort_by + "&direction=" +
+                        sort_type + "&search=" + search_query,
+                    success: function(data) {
+                        $('#admit-table-container').html(data);
+                    }
+                });
+            }
+
+            $(document).on('click', '.pagination a', function(event) {
+                event.preventDefault();
+                var href = $(this).attr('href');
+                var url = new URL(href, window.location.origin);
+                var page = url.searchParams.get('page');
+                var sort_by = $('#hidden_sort_by').val();
+                var sort_type = $('#hidden_sort_type').val();
+                var search_query = $('#search').val();
+                fetch_data(page, sort_type, sort_by, search_query);
+            });
+
+            $(document).on('keyup', '#search', function() {
+                clearTimeout(timeout);
+                timeout = setTimeout(function() {
+                    var search_query = $('#search').val();
+                    var page = 1;
+                    var sort_by = $('#hidden_sort_by').val();
+                    var sort_type = $('#hidden_sort_type').val();
+                    fetch_data(page, sort_type, sort_by, search_query);
+                }, 500);
+            });
+
+            $(document).on('click', '.sortable', function() {
+                var column_name = $(this).data('sort');
+                var current_sort_by = $('#hidden_sort_by').val();
+                var current_sort_type = $('#hidden_sort_type').val();
+                var reverse_order = 'asc';
+
+                if (current_sort_by == column_name) {
+                    if (current_sort_type == 'asc') {
+                        reverse_order = 'desc';
+                    } else {
+                        reverse_order = 'asc';
+                    }
+                } else {
+                    reverse_order = 'asc';
+                }
+
+                $('#hidden_sort_by').val(column_name);
+                $('#hidden_sort_type').val(reverse_order);
+
+                var page = 1;
+                var search_query = $('#search').val();
+
+                fetch_data(page, reverse_order, column_name, search_query);
+            });
+        });
+    </script>
 @endsection

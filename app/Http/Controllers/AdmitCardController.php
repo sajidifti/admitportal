@@ -31,9 +31,31 @@ class AdmitCardController extends Controller
         return redirect()->route('admit.list')->with('success', 'Admit card saved.');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $admitCards = AdmitCard::latest()->get();
+        $query = AdmitCard::query();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('name_bn', 'like', "%{$search}%")
+                  ->orWhere('roll', 'like', "%{$search}%")
+                  ->orWhere('exam_center_bn', 'like', "%{$search}%")
+                  ->orWhere('school', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('sort')) {
+            $query->orderBy($request->sort, $request->get('direction', 'asc'));
+        } else {
+            $query->latest();
+        }
+
+        $admitCards = $query->paginate(10);
+
+        if ($request->ajax()) {
+            return view('admit.partials.admit_table', compact('admitCards'))->render();
+        }
 
         return view('admit.list', compact('admitCards'));
     }
