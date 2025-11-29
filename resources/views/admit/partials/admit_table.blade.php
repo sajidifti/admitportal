@@ -56,8 +56,7 @@
         <tbody>
             @forelse ($admitCards as $card)
                 <tr class="hover:bg-gray-50">
-                    <td class="px-4 py-2 border">
-                        {{ $loop->iteration + ($admitCards->currentPage() - 1) * $admitCards->perPage() }}</td>
+                    <td class="px-4 py-2 border">{{ $card->id }}</td>
                     <td class="px-4 py-2 border">{{ $card->name_bn }}</td>
                     <td class="px-4 py-2 border">{{ $card->roll }}</td>
                     <td class="px-4 py-2 border">{{ $card->exam_center_bn }}</td>
