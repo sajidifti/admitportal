@@ -2,7 +2,18 @@
     <table class="min-w-full border border-gray-200">
         <thead class="bg-gray-100">
             <tr>
-                <th class="px-4 py-2 border">#</th>
+                <th class="px-4 py-2 border cursor-pointer sortable group" data-sort="id">
+                    <div class="flex items-center justify-between">
+                        <span>#</span>
+                        <span class="text-gray-400 group-hover:text-gray-600">
+                            @if (request('sort') == 'id')
+                                {!! request('direction') == 'asc' ? '&uarr;' : '&darr;' !!}
+                            @else
+                                &updownarrow;
+                            @endif
+                        </span>
+                    </div>
+                </th>
                 <th class="px-4 py-2 border cursor-pointer sortable group" data-sort="name_bn">
                     <div class="flex items-center justify-between">
                         <span>নাম</span>
