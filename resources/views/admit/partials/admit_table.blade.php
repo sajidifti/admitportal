@@ -56,7 +56,23 @@
         <tbody>
             @forelse ($admitCards as $card)
                 <tr class="hover:bg-gray-50">
-                    <td class="px-4 py-2 border">{{ $card->id }}</td>
+                    <td class="px-4 py-2 border">
+                        @php
+                            $isIdSort = request('sort') == 'id';
+                            $isDescending = request('direction') == 'desc';
+
+                            if ($isIdSort && $isDescending) {
+                                // When sorting by ID descending, count up normally
+                                $serial = $loop->iteration + ($admitCards->currentPage() - 1) * $admitCards->perPage();
+                            } else {
+                                // Default or ID ascending: count down from total
+                                $serial =
+                                    $admitCards->total() -
+                                    (($admitCards->currentPage() - 1) * $admitCards->perPage() + $loop->iteration - 1);
+                            }
+                        @endphp
+                        {{ $serial }}
+                    </td>
                     <td class="px-4 py-2 border">{{ $card->name_bn }}</td>
                     <td class="px-4 py-2 border">{{ $card->roll }}</td>
                     <td class="px-4 py-2 border">{{ $card->exam_center_bn }}</td>
